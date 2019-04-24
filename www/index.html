@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!--
+  Customize this policy to fit your own app's needs. For more guidance, see:
+      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+  Some notes:
+      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+          * Enable inline JS: add 'unsafe-inline' to default-src
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#EE82EE">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <script src="jquery-3.3.1.js"></script>
+  <title>Wyszukiwarka KRS</title>
+  <link rel="stylesheet" href="framework7/css/framework7.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<style>
+div {
+text-align: justify;
+}
+p {
+text-align: justify;
+}
+</style>
+<body class="color-theme-blue">
+  <div id="app">
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar"></div>
+    <!-- Left panel with cover effect-->
+    <div class="panel panel-right panel-cover theme-dark">
+      <div class="view">
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="title">Informacje</div>
+            </div>
+          </div>
+          <div class="page-content">
+            <div class="block">Autor: Mateusz Burzyński. Jeżeli zauważysz błąd, skontaktuj się ze mną pod adresem: matburzy@gmail.com.<br><br> Aplikacja korzysta z API fundacji MojePaństwo dostępne pod adresem Rejestr.io. Wersja aplikacji 1.1.0. <br>Wprowadzono szereg zmian:<br>- w wyszukiwaniu po nazwie naprawiono błąd z powodu którego w polu REGON wyświetlał się numer NIP,<br>- przebudowano gruntownie interfejs,<br>- wprowadzono listy rozwijane w wynikach.<br> Korzystasz z aplikacji w wersji darmowej (Lite) z reklamami. Jeżeli denerwują Cię reklamy, zastanów się nad kupnem wersji Pro pozbawionej reklam. Wpływy z zakupu aplikacji / reklam są przeznaczane w celu tworzenia nowych programów dla prawników i przedsiębiorców. <br><br> Twórca aplikacji nie odpowiada za dane znajdujące się w bazie danych. Dane pochodzą z oficjalnej informacji CIKRS, jednakże są aktualizowane z pewnym opóźnieniem. Jeżeli sprawdzasz informacje w celu dokonania zmiany danych podmiotu, upewnij się czy informacje są poprawne korzystając z oficjalnej bazy CIKRS.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Right panel with reveal effect-->
+    <div class="panel panel-left panel-cover">
+      <div class="view">
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="title">Opcje</div>
+            </div>
+          </div>
+          <div class="page-content">
+              <div class="list">
+
+
+          <ul>
+                <li>
+
+                  <a href="/searchbykrs/" class="item-content item-link">
+                    <div class="item-inner">
+            <div class="item-title"><i class="f7-icons">search</i> Po KRS</div>
+                    </div>
+                  </a>
+                </li>
+          </ul>
+
+          <ul>
+                <li>
+
+                  <a href="/searchbynip/" class="item-content item-link">
+                    <div class="item-inner">
+            <div class="item-title"><i class="f7-icons">search</i> Po NIP</div>
+                    </div>
+                  </a>
+                </li>
+          </ul>
+
+          <ul>
+                <li>
+
+                  <a href="/searchbyregon/" class="item-content item-link">
+                    <div class="item-inner">
+            <div class="item-title"><i class="f7-icons">search</i> Po REGON</div>
+                    </div>
+                  </a>
+                </li>
+          </ul>
+
+          <ul>
+                <li>
+
+                  <a href="/searchbyyear/" class="item-content item-link">
+                    <div class="item-inner">
+            <div class="item-title"><i class="f7-icons">search</i> Po dacie rejestracji</div>
+                    </div>
+                  </a>
+                </li>
+          </ul>
+
+
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+<style>
+.medium {
+font-size: 20px;
+}
+.huge {
+font-size: 25px;
+}
+</style>
+
+<script type="text/javascript">
+function mediumfont(){
+$('#los1').addClass('medium');
+$('#los2').addClass('medium');
+$('#los3').addClass('medium');
+}
+</script>
+<script type="text/javascript">
+function hugefont(){
+$('#los1').addClass('huge');
+$('#los2').addClass('huge');
+$('#los3').addClass('huge');
+}
+</script>
+<script type="text/javascript">
+function normalfont(){
+$('#los1').removeClass();
+$('#los2').removeClass();
+$('#los3').removeClass();
+}
+</script>
+
+
+
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main ios-edges">
+      <!-- Page, data-name contains page name which can be used in callbacks -->
+      <div class="page" data-name="home">
+        <!-- Top Navbar -->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="right">
+              <a href="#" class="link icon-only panel-open" data-panel="right">
+                <i class="icon f7-icons ios-only">help</i>
+                <i class="icon material-icons md-only">help</i>
+              </a>
+            </div>
+
+            <div class="left">
+              <a href="#" class="link icon-only panel-open" data-panel="left">
+                <i class="icon f7-icons ios-only">menu</i>
+                <i class="icon material-icons md-only">menu</i>
+              </a>
+            </div>
+
+            <div class="title sliding"><i class="f7-icons">search</i> Wyszukiwarka KRS Lite</div>
+
+          </div>
+        </div>
+        <!-- Toolbar-->
+
+
+        <!-- Scrollable page content-->
+
+        <div class="page-content">
+
+
+
+          <div class="list inset">
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div  class="item-input-wrap">
+                <input id="inputname" type="text" placeholder="Wpisz firmę podmiotu"></input>
+             <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </li>
+          <script type="text/javascript">
+          $("#inputname").on("keypress", function(event){
+              if (event.keyCode === 13) {
+                  zwrockrs();
+                  event.preventDefault();
+              }
+          });
+          </script>
+        </div>
+          <div class="list">
+          <a class="item-link smart-select smart-select-init" data-open-in="popover">
+          <select id="wojewodztwo" name="wojewodztwo">
+            <option value="none" selected>wszystkie</option>
+            <option value="pomorskie">pomorskie</option>
+            <option value="podkarpackie">podkarpackie</option>
+            <option value="zachodniopomorskie">zachodniopomorskie</option>
+            <option value="podlaskie">podlaskie</option>
+            <option value="mazowieckie">mazowieckie</option>
+          <option value="malopolskie">małopolskie</option>
+            <option value="slaskie">śląskie</option>
+          <option value="warminsko-mazurskie">warmińsko-mazurskie</option>
+          <option value="lodzkie">łódzkie</option>
+          <option value="lubelskie">lubelskie</option>
+
+          <option value="dolnoslaskie">dolnośląskie</option>
+          <option value="lubuskie">lubuskie</option>
+          <option value="opolskie">opolskie</option>
+          <option value="wielkopolskie">wielkopolskie</option>
+           <option value="swietokrzyskie">świętokrzyskie</option>
+            <option value="kujawsko-pomorskie">kujawsko-pomorskie</option>
+          </select>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title">Województwo</div>
+            </div>
+          </div>
+          </a>
+
+          </div>
+
+
+          <input id="buttonkrs" class="button button-raised button-fill popup-open" type="button" value="Wyszukaj" onclick="zwrockrs()"><br>
+          <div class="block-title">Wyniki wyszukiwania</div>
+          <div class="theme-blue list accordion-list">
+            <ul>
+
+          <div id="wynikiWyszukiwania">
+          </ul>
+        </div>
+          </div>
+
+
+</div>
+		<script type="text/javascript">
+	function zwrockrs() {
+  var podmiot = document.getElementById('inputname').value;
+  var select = $('#wojewodztwo').val();
+  var wojewodztwo_id = ""
+  if (select == "podkarpackie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=9";
+  } else if (select == "pomorskie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=11"; }
+  else if (select == "dolnoslaskie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=1"; }
+  else if (select == "kujawsko-pomorskie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=2"; }
+  else if (select == "lubelskie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=3"; }
+  else if (select == "lubuskie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=4"; }
+  else if (select == "lodzkie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=5"; }
+  else if (select == "malopolskie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=6"; }
+  else if (select == "mazowieckie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=7"; }
+  else if (select == "opolskie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=8"; }
+   else if (select == "podlaskie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=10"; }
+     else if (select == "slaskie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=12"; }
+       else if (select == "swietokrzyskie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=13"; }
+         else if (select == "warminsko-mazurskie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=14"; }
+           else if (select == "wielkopolskie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=15"; }
+             else if (select == "zachodniopomorskie") {
+  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=16";
+  } else {
+  wojewodztwo_id = ""; };
+
+  console.log(wojewodztwo_id);
+document.getElementById("wynikiWyszukiwania").innerHTML = "<div class=\"margin-left card-header bg-color-green text-color-white\"><i class=\"f7-icons\">gear_fill</i> Ładowanie wyników wyszukiwania... Proszę czekać.</div>";
+app.preloader.show();
+$.getJSON(
+  "https://api-v3.mojepanstwo.pl/dane/krs_podmioty.json?conditions[q]=" + podmiot + wojewodztwo_id + "&limit=50",
+  function(data) {
+var i;
+document.getElementById("wynikiWyszukiwania").innerHTML = "";
+if (data.Dataobject.length == 50) {
+$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"><span class=\"margin-left\"> Znaleziono <strong>"+data.Dataobject.length+"</strong> podmiotów. Osiągnięto limit wyszukiwania - postaraj się zawęzić kryteria, aby wyszukać właściwy podmiot.<\div>");
+} else if (data.Dataobject.length == 0) {
+$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-red text-color-white\"><span class=\"margin-left\"> Nie znaleziono żadnych podmiotów. Sprawdź czy wpisałeś prawidłową frazę i spróbuj ponownie.<\div>"); }
+else if (data.Dataobject.length == 1) {
+$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"><span class=\"margin-left\"> Znaleziono jeden podmiot.<\div>");
+}
+else if (data.Dataobject.length == 2) {
+$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"><span class=\"margin-left\"> Znaleziono dwa podmioty.<\div>");
+}
+else if (data.Dataobject.length == 3) {
+$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"><span class=\"margin-left\"> Znaleziono trzy podmioty.<\div>");
+}
+else if (data.Dataobject.length == 4) {
+$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"><span class=\"margin-left\"> Znaleziono cztery podmioty.<\div>");
+}
+else {
+$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"><span class=\"margin-left\"> Znaleziono <strong>"+data.Dataobject.length+"</strong> podmiotów.</div>"); };
+for (i = 0; i < data.Dataobject.length; i++) {
+$("#wynikiWyszukiwania").append("<li class=\" accordion-item\"><a href=\"#\" class=\"bg-color-blue text-color-white item-content item-link\"><div class=\"item-inner\"><div class=\"item-title\">"+data.Dataobject[i].data["krs_podmioty.nazwa"]+"</div></div></a><div class=\"accordion-item-content\"><div class=\"block\"><span><strong><i class=\"f7-icons\">persons_round_fill</i> Firma (nazwa): </strong></span><span id=\"nazwa\">"+data.Dataobject[i].data["krs_podmioty.nazwa"]+"</span><br><span><strong><i class=\"f7-icons\">world</i> KRS:</strong> </span><span id=\"krs\">"+data.Dataobject[i].data["krs_podmioty.krs"]+"</span><br><span><strong><i class=\"f7-icons\">world</i> REGON:</strong></span><span id=\"regon\">"+data.Dataobject[i].data["krs_podmioty.regon"]+"</span><br><span><strong><i class=\"f7-icons\">world</i> NIP:</strong> </span><span id=\"nip\">"+data.Dataobject[i].data["krs_podmioty.nip"]+"</span><br><span><strong><i class=\"f7-icons\">at_round</i> Adres:</strong> </span><span id=\"adres\">"+data.Dataobject[i].data["krs_podmioty.adres"]+"</span><br><span><strong><i class=\"f7-icons\">home</i> Siedziba:</strong> </span><span id=\"siedziba\">"+data.Dataobject[i].data["krs_podmioty.siedziba"]+"</span><br><span><strong><i class=\"f7-icons\">star</i> Data rejestracji podmiotu:</strong> </span><span id=\"adres\">"+data.Dataobject[i].data["krs_podmioty.data_rejestracji_przedsiebiorcy"]+"</span><br><span><strong><i class=\"f7-icons\">briefcase</i> Sposób reprezentacji podmiotu:</strong> </span><span id=\"sposobreprezentacji\">"+data.Dataobject[i].data["krs_podmioty.sposob_reprezentacji"]+"</span><br></div></div></li>");
+};
+$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"><i class=\"f7-icons\">info</i></div><div class=\"card-content bg-color-green text-color-white\"> UWAGA - Dane pochodzą z Rejestr.io oferowanego przez fundację MojePaństwo. Mogą nastąpić niewielkie, kilkudniowe opóźnienia w aktualizacji stanu prawnego w stosunku do oficjalnego rejestru KRS. Twórca aplikacji nie odpowiada za działanie bazy danych ani informacje w niej zawarte.</div><div class=\"card-header bg-color-green text-color-white\"><i class=\"f7-icons\">info</i></div><div class=\"card-content bg-color-green text-color-white\"> Limit zwracanych wyników w jednym zapytaniu wynosi maksymalnie 50 podmiotów. Jeżeli chcesz zawęzić liczbę wyszukanych podmiotów, wprowadź bardziej precyzyjne zapytanie.</div>")
+app.preloader.hide();
+if (document.getElementById("test").innerHTML == "") {
+document.getElementById("test").innerHTML = "<div class=\"bg-color-red text-color-white\"><i class=\"f7-icons\">alert</i> Nie znaleziono takiego podmiotu w bazie. Wpisz nazwę jeszcze raz. Upewnij się, że Twoje połączenie z Internetem jest aktywne.</div>"; app.preloader.hide(); }
+})
+.fail(function() { document.getElementById("test").innerHTML = "<div class=\"bg-color-red text-color-white\"><i class=\"f7-icons\">alert</i>Wystąpił błąd z połączeniem internetowym. Upewnij się, że Twoje połączenie z internetem jest aktywne.</div>"; app.preloader.hide(); })
+};
+		</script>
+
+
+
+
+		<script type="text/javascript">
+	function zwrockrskrs() {
+  var podmiot = document.getElementById('inputkrs').value;
+  app.preloader.show();
+document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-green text-color-white\"> Ładowanie wyników wyszukiwania... Proszę czekać.</div>";
+
+$.getJSON(
+  "https://api-v3.mojepanstwo.pl/dane/krs_podmioty.json?conditions[krs_podmioty.krs]=" + podmiot,
+  function(data) {
+var i;
+document.getElementById("test").innerHTML = "";
+for (i = 0; i < data.Dataobject.length; i++) {
+$("#test").append("<div class=\"card\"><div class=\"card-header bg-color-blue text-color-white\"><strong><span style=\"text-align: left;\" id=\"nazwa\">"+data.Dataobject[i].data["krs_podmioty.nazwa"]+"</span></strong></div><div class=\"card-content card-content-padding\"><span><i>KRS:</i> </span><span id=\"krs\">"+data.Dataobject[i].data["krs_podmioty.krs"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>REGON:</i> </span><span id=\"nip\">"+data.Dataobject[i].data["krs_podmioty.regon"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>NIP:</i> </span><span id=\"nip\">"+data.Dataobject[i].data["krs_podmioty.nip"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Adres:</i> </span><span id=\"adres\">"+data.Dataobject[i].data["krs_podmioty.adres"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Siedziba:</i> </span><span id=\"siedziba\">"+data.Dataobject[i].data["krs_podmioty.siedziba"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Data rejestracji podmiotu:</i> </span><span id=\"datarejestracji\">"+data.Dataobject[i].data["krs_podmioty.data_rejestracji_przedsiebiorcy"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Sposób reprezentacji podmiotu:</i> </span><span id=\"sposobreprezentacji\">"+data.Dataobject[i].data["krs_podmioty.sposob_reprezentacji"]+"</span></div>");
+};
+app.preloader.hide();
+if (document.getElementById("test").innerHTML == "") {
+document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-red text-color-white\"><i class=\"f7-icons\">alert</i> Nie znaleziono takiego podmiotu w bazie. Wpisz nazwę jeszcze raz. Upewnij się, że Twoje połączenie z Internetem jest aktywne.</div>"; app.preloader.hide(); }
+})
+.fail(function() { document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-red text-color-white\"><i class=\"f7-icons\">alert</i>Wystąpił błąd z połączeniem internetowym. Upewnij się, że Twoje połączenie z internetem jest aktywne.</div>"; app.preloader.hide(); })
+};
+
+		</script>
+
+		<script type="text/javascript">
+	function zwrockrsnip() {
+  var podmiot = document.getElementById('inputnip').value;
+document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-green text-color-white\"><i class=\"f7-icons\">gear_fill</i> Ładowanie wyników wyszukiwania... Proszę czekać.</div>";
+app.preloader.show();
+$.getJSON(
+  "https://api-v3.mojepanstwo.pl/dane/krs_podmioty.json?conditions[krs_podmioty.nip]=" + podmiot,
+  function(data) {
+var i;
+document.getElementById("test").innerHTML = "";
+for (i = 0; i < data.Dataobject.length; i++) {
+$("#test").append("<div class=\"card\"><div class=\"card-header bg-color-blue text-color-white\"><strong><span style=\"text-align: left;\" id=\"nazwa\">"+data.Dataobject[i].data["krs_podmioty.nazwa"]+"</span></strong></div><div class=\"card-content card-content-padding\"><span><i>KRS:</i> </span><span id=\"krs\">"+data.Dataobject[i].data["krs_podmioty.krs"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>REGON:</i> </span><span id=\"nip\">"+data.Dataobject[i].data["krs_podmioty.regon"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>NIP:</i> </span><span id=\"nip\">"+data.Dataobject[i].data["krs_podmioty.nip"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Adres:</i> </span><span id=\"adres\">"+data.Dataobject[i].data["krs_podmioty.adres"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Siedziba:</i> </span><span id=\"siedziba\">"+data.Dataobject[i].data["krs_podmioty.siedziba"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Data rejestracji podmiotu:</i> </span><span id=\"adres\">"+data.Dataobject[i].data["krs_podmioty.data_rejestracji_przedsiebiorcy"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Sposób reprezentacji podmiotu:</i> </span><span id=\"sposobreprezentacji\">"+data.Dataobject[i].data["krs_podmioty.sposob_reprezentacji"]+"</span></div>");
+};
+app.preloader.hide();
+if (document.getElementById("test").innerHTML == "") {
+document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-red text-color-white\"><i class=\"f7-icons\">alert</i> Nie znaleziono takiego podmiotu w bazie. Wpisz nazwę jeszcze raz. Upewnij się, że Twoje połączenie z Internetem jest aktywne.</div>"; app.preloader.hide(); }
+})
+.fail(function() { document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-red text-color-white\"><i class=\"f7-icons\">alert</i>Wystąpił błąd z połączeniem internetowym. Upewnij się, że Twoje połączenie z internetem jest aktywne.</div>"; app.preloader.hide(); })
+};
+		</script>
+
+	<script type="text/javascript">
+	function zwrockrsregon() {
+  var podmiot = document.getElementById('inputregon').value;
+document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-green text-color-white\"><i class=\"f7-icons\">gear_fill</i> Ładowanie wyników wyszukiwania... Proszę czekać.</div>";
+app.preloader.show();
+$.getJSON(
+  "https://api-v3.mojepanstwo.pl/dane/krs_podmioty.json?conditions[krs_podmioty.regon]=" + podmiot,
+  function(data) {
+var i;
+document.getElementById("test").innerHTML = "";
+for (i = 0; i < data.Dataobject.length; i++) {
+$("#test").append("<div class=\"card\"><div class=\"card-header bg-color-blue text-color-white\"><strong><span style=\"text-align: left;\" id=\"nazwa\">"+data.Dataobject[i].data["krs_podmioty.nazwa"]+"</span></strong></div><div class=\"card-content card-content-padding\"><span><i>KRS:</i> </span><span id=\"krs\">"+data.Dataobject[i].data["krs_podmioty.krs"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>REGON:</i> </span><span id=\"nip\">"+data.Dataobject[i].data["krs_podmioty.regon"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>NIP:</i> </span><span id=\"nip\">"+data.Dataobject[i].data["krs_podmioty.nip"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Adres:</i> </span><span id=\"adres\">"+data.Dataobject[i].data["krs_podmioty.adres"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Siedziba:</i> </span><span id=\"siedziba\">"+data.Dataobject[i].data["krs_podmioty.siedziba"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Data rejestracji podmiotu:</i> </span><span id=\"adres\">"+data.Dataobject[i].data["krs_podmioty.data_rejestracji_przedsiebiorcy"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Sposób reprezentacji podmiotu:</i> </span><span id=\"sposobreprezentacji\">"+data.Dataobject[i].data["krs_podmioty.sposob_reprezentacji"]+"</span></div>");
+};
+app.preloader.hide();
+if (document.getElementById("test").innerHTML == "") {
+document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-red text-color-white\"><i class=\"f7-icons\">alert</i> Nie znaleziono takiego podmiotu w bazie. Wpisz nazwę jeszcze raz. Upewnij się, że Twoje połączenie z Internetem jest aktywne.</div>"; app.preloader.hide(); }
+})
+.fail(function() { document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-red text-color-white\"><i class=\"f7-icons\">alert</i>Wystąpił błąd z połączeniem internetowym. Upewnij się, że Twoje połączenie z internetem jest aktywne.</div>"; app.preloader.hide(); })
+};
+		</script>
+
+		<script type="text/javascript">
+	function zwrockrsrok() {
+  var podmiot = document.getElementById('inputyear').value;
+document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-green text-color-white\"><i class=\"f7-icons\">gear_fill</i> Ładowanie wyników wyszukiwania... Proszę czekać.</div>";
+app.preloader.show();
+$.getJSON(
+  "https://api-v3.mojepanstwo.pl/dane/krs_podmioty.json?conditions[date]=" + podmiot + "&limit=500",
+  function(data) {
+var i;
+document.getElementById("test").innerHTML = "";
+for (i = 0; i < data.Dataobject.length; i++) {
+$("#test").append("<div class=\"card\"><div class=\"card-header bg-color-blue text-color-white\"><strong><span style=\"text-align: left;\" id=\"nazwa\">"+data.Dataobject[i].data["krs_podmioty.nazwa"]+"</span></strong></div><div class=\"card-content card-content-padding\"><span><i>KRS:</i> </span><span id=\"krs\">"+data.Dataobject[i].data["krs_podmioty.krs"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>REGON:</i> </span><span id=\"nip\">"+data.Dataobject[i].data["krs_podmioty.regon"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>NIP:</i> </span><span id=\"nip\">"+data.Dataobject[i].data["krs_podmioty.nip"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Adres:</i> </span><span id=\"adres\">"+data.Dataobject[i].data["krs_podmioty.adres"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Siedziba:</i> </span><span id=\"siedziba\">"+data.Dataobject[i].data["krs_podmioty.siedziba"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Data rejestracji podmiotu:</i> </span><span id=\"adres\">"+data.Dataobject[i].data["krs_podmioty.data_rejestracji_przedsiebiorcy"]+"</span></div><div class=\"card-content card-content-padding\"><span><i>Sposób reprezentacji podmiotu:</i> </span><span id=\"sposobreprezentacji\">"+data.Dataobject[i].data["krs_podmioty.sposob_reprezentacji"]+"</span></div>");
+};
+app.preloader.hide();
+if (document.getElementById("test").innerHTML == "") {
+document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-red text-color-white\"><i class=\"f7-icons\">alert</i> Nie znaleziono takiego podmiotu w bazie. Wpisz nazwę jeszcze raz. Upewnij się, że Twoje połączenie z Internetem jest aktywne.</div>"; app.preloader.hide(); }
+})
+.fail(function() { document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-red text-color-white\"><i class=\"f7-icons\">alert</i>Wystąpił błąd z połączeniem internetowym. Upewnij się, że Twoje połączenie z internetem jest aktywne.</div>"; app.preloader.hide(); })
+};
+		</script>
+
+
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+
+
+
+  <!-- Cordova -->
+  <!--
+
+  -->
+  <script>
+	     function initAds() {
+      if (admob) {
+        var adPublisherIds = {
+          android : {
+            banner : "ca-app-pub-3778512068936565/2838577297",
+            interstitial : "ca-app-pub-3778512068936565/6390809497"
+          }
+        };
+
+        var admobid = (/(android)/i.test(navigator.userAgent)) ? adPublisherIds.android : adPublisherIds.ios;
+
+        admob.setOptions({
+          publisherId:      admobid.banner,
+          interstitialAdId: admobid.interstitial,
+        });
+        registerAdEvents();
+      } else {
+        alert('AdMobAds plugin not ready');
+      }
+    }
+
+    function onAdLoaded(e) {
+      if (e.adType === admob.AD_TYPE.INTERSTITIAL) {
+        admob.showInterstitialAd();
+        showNextInterstitial = setTimeout(function() {
+          admob.requestInterstitialAd();
+        }, 2 * 60 * 1000); // 2 minutes
+      }
+    }
+
+    // optional, in case respond to events
+    function registerAdEvents() {
+      document.addEventListener(admob.events.onAdLoaded, onAdLoaded);
+      document.addEventListener(admob.events.onAdFailedToLoad, function (e) {});
+      document.addEventListener(admob.events.onAdOpened, function (e) {});
+      document.addEventListener(admob.events.onAdClosed, function (e) {});
+      document.addEventListener(admob.events.onAdLeftApplication, function (e) {});
+      document.addEventListener(admob.events.onInAppPurchaseRequested, function (e) {});
+    }
+
+    $(document).click(function()
+  {
+      StatusBar.hide();
+  });
+
+    function onDeviceReady() {
+      document.removeEventListener('deviceready', onDeviceReady, false);
+      initAds();
+
+
+      // display a banner at startup
+      admob.createBannerView();
+
+
+
+      // request an interstitial
+
+    }
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+		$("#inputkrs").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#input").click();
+    }
+});
+
+
+  </script>
+<script src="cordova.js"></script>
+  <!-- Framework7 library -->
+  <script src="framework7/js/framework7.min.js"></script>
+
+  <!-- App routes -->
+  <script src="js/routes.js"></script>
+
+  <!-- Your custom app scripts -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>

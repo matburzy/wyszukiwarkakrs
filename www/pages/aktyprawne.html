@@ -1,0 +1,213 @@
+<div class="page" data-name="enter">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title">Przejrzyj akty prawne</div>
+    </div>
+  </div>
+  <div class="page-content">
+
+    
+    <div class="block">
+        <div>Poniżej znajdziesz zbiór aktów prawnych wymaganych na egzamin. Do przejrzenia wymagane jest aktywne połączenie z Internetem (dowolnego rodzaju - komórkowe, stacjonarne Wi-Fi). Kliknięcie w dany akt prawny spowoduje otworzenie się przeglądarki aktu prawnego wewnątrz aplikacji. Aby cofnąć się do ekranu wyboru, kliknij przycisk "Wstecz" w telefonie. Źródłem aktów prawnych jest Internetowy System Aktów Prawnych (ISAP). Akty zostały przekształcone, aby mogły wyświetlać się na urządzeniu bez przeglądarki PDF. W związku z tym mogą wystąpić drobne błędy w wyświetlaniu. </div>
+		
+		<style>
+		.demo-card-header-pic .card-header {
+  height: 10vw;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+.demo-card-header-pic .card-content-padding .date{
+  color: #8e8e93;
+}
+		</style>
+		<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Swoboda działalności gospodarczej</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Ustawa o swobodzie działalności gospodarczej</p>
+  </div>
+  <div class="card-footer"><a onclick="uswoboda()">Przeczytaj</a></div>
+</div>
+		<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Prawo spółdzielcze</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Prawo spółdzielcze</p>
+  </div>
+  <div class="card-footer"><a onclick="spoldzielcze()">Przeczytaj</a></div>
+</div>
+
+		<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Spółdzielnie mieszkaniowe</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Ustawa o spółdzielniach mieszkaniowych</p>
+  </div>
+  <div class="card-footer"><a onclick="usm()">Przeczytaj</a></div>
+</div>
+		
+		<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Ochrona konkurencji i konsumentów</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Ustawa o ochronie konkurencji i konsumentów</p>
+  </div>
+  <div class="card-footer"><a onclick="uokik()">Przeczytaj</a></div>
+</div>
+
+		<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Ubezpieczenia i reasekuracja</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Ustawa o działalności ubezpieczeniowej i reasekuracyjnej</p>
+  </div>
+  <div class="card-footer"><a onclick="ubezp()">Przeczytaj</a></div>
+</div>
+
+<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Ochrona danych osobowych</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Ustawa o ochronie danych osobowych (po RODO)</p>
+  </div>
+  <div class="card-footer"><a onclick="uodo()">Przeczytaj</a></div>
+</div>
+
+<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Rozporządzenie RODO</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Rozporządzenie RODO</p>
+  </div>
+  <div class="card-footer"><a onclick="rodo()">Przeczytaj</a></div>
+</div>
+
+<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Zamówienia publiczne</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Ustawa o zamówieniach publicznych</p>
+  </div>
+  <div class="card-footer"><a onclick="zamowienia()">Przeczytaj</a></div>
+</div>
+
+<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Prawo o stowarzyszeniach</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Prawo o stowarzyszeniach</p>
+  </div>
+  <div class="card-footer"><a onclick="stowarzyszenia()">Przeczytaj</a></div>
+</div>
+
+<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Fundacje</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Ustawa o fundacjach</p>
+  </div>
+  <div class="card-footer"><a onclick="fundacje()">Przeczytaj</a></div>
+</div>
+
+<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Zastawy</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Ustawa o zastawach i rejestrze zastawów</p>
+  </div>
+  <div class="card-footer"><a onclick="zastaw()">Przeczytaj</a></div>
+</div>
+  
+  <div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Przewozowe</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Prawo przewozowe</p>
+  </div>
+  <div class="card-footer"><a onclick="przewozowe()">Przeczytaj</a></div>
+</div>
+  
+    <div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Spółki handlowe</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Kodeks społek handlowych</p>
+  </div>
+  <div class="card-footer"><a onclick="ksh()">Przeczytaj</a></div>
+</div>
+
+ <div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">KRS</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Ustawa o Krajowym Rejestrze Sądowym</p>
+  </div>
+  <div class="card-footer"><a onclick="krs()">Przeczytaj</a></div>
+</div>
+
+<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Upadłości</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Prawo upadłościowe</p>
+  </div>
+  <div class="card-footer"><a onclick="upadlosciowe()">Przeczytaj</a></div>
+</div>
+
+<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Restrukturyzacja</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Prawo restrukturyzacyjne</p>
+  </div>
+  <div class="card-footer"><a onclick="restrukturyzacyjne()">Przeczytaj</a></div>
+</div>
+
+<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Autorskie</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Ustawa o prawach autorskich i prawach pokrewnych</p>
+  </div>
+  <div class="card-footer"><a onclick="autorskie()">Przeczytaj</a></div>
+</div>
+
+<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Własność przemysłowa</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Ustawa o własności przemysłowej</p>
+  </div>
+  <div class="card-footer"><a onclick="przemyslowe()">Przeczytaj</a></div>
+</div>
+
+<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Spółka europejska</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Ustawa o europejskich zgrupowaniach interesów i spółce europejskiej</p>
+  </div>
+  <div class="card-footer"><a onclick="speuro()">Przeczytaj</a></div>
+</div>
+
+<div class="card demo-card-header-pic">
+  <div style="background-image:url(card.jpg)" class="card-header align-items-flex-end">Świadczenie usług drogą elektroniczną</div>
+  <div class="card-content card-content-padding">
+    
+    <p>Ustawa o świadczeniu usług drogą elektroniczną</p>
+  </div>
+  <div class="card-footer"><a onclick="elektro()">Przeczytaj</a></div>
+</div>
+  
+</div>
+
+    </div>
+  </div>
+</div>
