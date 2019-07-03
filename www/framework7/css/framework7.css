@@ -26,6 +26,7 @@ body {
   overflow: hidden;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
+  
 }
 .framework7-root {
   overflow: hidden;

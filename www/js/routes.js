@@ -28,25 +28,14 @@ routes = [
     url: './pages/searchbyyear.html',
   },
   {
-    path: '/form/',
-    url: './pages/form.html',
-  },
-    {
-    path: '/all/',
-    url: './pages/all.html',
-  },
-  {
     path: '/mail/',
     url: 'mailto:matburzy@gmail.com',
   },
-  {
-    path: '/settings/',
-    url: './pages/settings.html',
+   {
+    path: '/privacy/',
+    url: './pages/privacy.html',
   },
-  {
-	  path: '/aktyprawne/',
-	  url: './pages/aktyprawne.html',
-  },
+ 
   // Page Loaders & Router
   {
     path: '/page-loader-template7/:user/:userId/:posts/:postId/',

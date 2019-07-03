@@ -20,7 +20,7 @@
   <meta name="msapplication-tap-highlight" content="no">
   <script src="jquery-3.3.1.js"></script>
   <title>Wyszukiwarka KRS</title>
-  <link rel="stylesheet" href="framework7/css/framework7.css">
+  <link rel="stylesheet" href="framework7/css/framework7.min.css">
   <link rel="stylesheet" href="css/icons.css">
   <link rel="stylesheet" href="css/app.css">
 </head>
@@ -46,7 +46,20 @@ text-align: justify;
             </div>
           </div>
           <div class="page-content">
-            <div class="block">Autor: Mateusz Burzyński. Jeżeli zauważysz błąd, skontaktuj się ze mną pod adresem: matburzy@gmail.com.<br><br> Aplikacja korzysta z API fundacji MojePaństwo dostępne pod adresem Rejestr.io. Wersja aplikacji 1.1.0. <br>Wprowadzono szereg zmian:<br>- w wyszukiwaniu po nazwie naprawiono błąd z powodu którego w polu REGON wyświetlał się numer NIP,<br>- przebudowano gruntownie interfejs,<br>- wprowadzono listy rozwijane w wynikach.<br> Korzystasz z aplikacji w wersji darmowej (Lite) z reklamami. Jeżeli denerwują Cię reklamy, zastanów się nad kupnem wersji Pro pozbawionej reklam. Wpływy z zakupu aplikacji / reklam są przeznaczane w celu tworzenia nowych programów dla prawników i przedsiębiorców. <br><br> Twórca aplikacji nie odpowiada za dane znajdujące się w bazie danych. Dane pochodzą z oficjalnej informacji CIKRS, jednakże są aktualizowane z pewnym opóźnieniem. Jeżeli sprawdzasz informacje w celu dokonania zmiany danych podmiotu, upewnij się czy informacje są poprawne korzystając z oficjalnej bazy CIKRS.</div>
+            <div class="block">
+			
+			<i class="customicon-copyright"></i>
+			Autor: Mateusz Burzyński. Jeżeli zauważysz błąd, skontaktuj się ze mną pod adresem: matburzy@gmail.com.<br><br> 
+			
+			Aplikacja korzysta z API fundacji MojePaństwo dostępne pod adresem Rejestr.io. Wersja aplikacji 1.1.1. 
+			<br>Wprowadzono szereg zmian:
+			<br>- nowe ikonki, odświeżenie interfejsu,
+			<br>- nowa, czytelniejsza czcionka,
+			<br>- wersja aplikacji na przeglądarkę internetową - od tej pory będą rozwijane równolegle,
+			<br>- w wyszukiwaniu po nazwie naprawiono błąd z powodu którego w polu REGON wyświetlał się numer NIP,
+			<br>- przebudowano gruntownie interfejs,
+			<br>- wprowadzono listy rozwijane w wynikach.
+			<br><br><i class="customicon-alarm"></i> Twórca aplikacji nie odpowiada za dane znajdujące się w bazie danych. Dane pochodzą z oficjalnej informacji CIKRS, jednakże są aktualizowane z pewnym opóźnieniem. Jeżeli sprawdzasz informacje w celu dokonania zmiany danych podmiotu, upewnij się czy informacje są poprawne korzystając z oficjalnej bazy CIKRS.</div>
           </div>
         </div>
       </div>
@@ -69,7 +82,7 @@ text-align: justify;
 
                   <a href="/searchbykrs/" class="item-content item-link">
                     <div class="item-inner">
-            <div class="item-title"><i class="f7-icons">search</i> Po KRS</div>
+            <div class="item-title"><i class="customicon-smartphone"></i> Po KRS</div>
                     </div>
                   </a>
                 </li>
@@ -80,7 +93,7 @@ text-align: justify;
 
                   <a href="/searchbynip/" class="item-content item-link">
                     <div class="item-inner">
-            <div class="item-title"><i class="f7-icons">search</i> Po NIP</div>
+            <div class="item-title"><i class="customicon-smartphone"></i> Po NIP</div>
                     </div>
                   </a>
                 </li>
@@ -91,7 +104,7 @@ text-align: justify;
 
                   <a href="/searchbyregon/" class="item-content item-link">
                     <div class="item-inner">
-            <div class="item-title"><i class="f7-icons">search</i> Po REGON</div>
+            <div class="item-title"><i class="customicon-smartphone"></i> Po REGON</div>
                     </div>
                   </a>
                 </li>
@@ -102,12 +115,22 @@ text-align: justify;
 
                   <a href="/searchbyyear/" class="item-content item-link">
                     <div class="item-inner">
-            <div class="item-title"><i class="f7-icons">search</i> Po dacie rejestracji</div>
+            <div class="item-title"><i class="customicon-smartphone"></i> Po dacie rejestracji</div>
                     </div>
                   </a>
                 </li>
           </ul>
 
+          <ul>
+                <li>
+
+                  <a href="/privacy/" class="item-content item-link">
+                    <div class="item-inner">
+            <div class="item-title"><i class="customicon-privacy"></i> Polityka prywatności</div>
+                    </div>
+                  </a>
+                </li>
+          </ul>
 
           </div>
 
@@ -115,36 +138,6 @@ text-align: justify;
         </div>
       </div>
     </div>
-<style>
-.medium {
-font-size: 20px;
-}
-.huge {
-font-size: 25px;
-}
-</style>
-
-<script type="text/javascript">
-function mediumfont(){
-$('#los1').addClass('medium');
-$('#los2').addClass('medium');
-$('#los3').addClass('medium');
-}
-</script>
-<script type="text/javascript">
-function hugefont(){
-$('#los1').addClass('huge');
-$('#los2').addClass('huge');
-$('#los3').addClass('huge');
-}
-</script>
-<script type="text/javascript">
-function normalfont(){
-$('#los1').removeClass();
-$('#los2').removeClass();
-$('#los3').removeClass();
-}
-</script>
 
 
 
@@ -169,7 +162,7 @@ $('#los3').removeClass();
               </a>
             </div>
 
-            <div class="title sliding"><i class="f7-icons">search</i> Wyszukiwarka KRS Lite</div>
+            <div class="title sliding"><i class="customicon-smartphone"></i> Wyszukiwarka KRS</div>
 
           </div>
         </div>
@@ -313,12 +306,12 @@ $("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-co
 for (i = 0; i < data.Dataobject.length; i++) {
 $("#wynikiWyszukiwania").append("<li class=\" accordion-item\"><a href=\"#\" class=\"bg-color-blue text-color-white item-content item-link\"><div class=\"item-inner\"><div class=\"item-title\">"+data.Dataobject[i].data["krs_podmioty.nazwa"]+"</div></div></a><div class=\"accordion-item-content\"><div class=\"block\"><span><strong><i class=\"f7-icons\">persons_round_fill</i> Firma (nazwa): </strong></span><span id=\"nazwa\">"+data.Dataobject[i].data["krs_podmioty.nazwa"]+"</span><br><span><strong><i class=\"f7-icons\">world</i> KRS:</strong> </span><span id=\"krs\">"+data.Dataobject[i].data["krs_podmioty.krs"]+"</span><br><span><strong><i class=\"f7-icons\">world</i> REGON:</strong></span><span id=\"regon\">"+data.Dataobject[i].data["krs_podmioty.regon"]+"</span><br><span><strong><i class=\"f7-icons\">world</i> NIP:</strong> </span><span id=\"nip\">"+data.Dataobject[i].data["krs_podmioty.nip"]+"</span><br><span><strong><i class=\"f7-icons\">at_round</i> Adres:</strong> </span><span id=\"adres\">"+data.Dataobject[i].data["krs_podmioty.adres"]+"</span><br><span><strong><i class=\"f7-icons\">home</i> Siedziba:</strong> </span><span id=\"siedziba\">"+data.Dataobject[i].data["krs_podmioty.siedziba"]+"</span><br><span><strong><i class=\"f7-icons\">star</i> Data rejestracji podmiotu:</strong> </span><span id=\"adres\">"+data.Dataobject[i].data["krs_podmioty.data_rejestracji_przedsiebiorcy"]+"</span><br><span><strong><i class=\"f7-icons\">briefcase</i> Sposób reprezentacji podmiotu:</strong> </span><span id=\"sposobreprezentacji\">"+data.Dataobject[i].data["krs_podmioty.sposob_reprezentacji"]+"</span><br></div></div></li>");
 };
-$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"><i class=\"f7-icons\">info</i></div><div class=\"card-content bg-color-green text-color-white\"> UWAGA - Dane pochodzą z Rejestr.io oferowanego przez fundację MojePaństwo. Mogą nastąpić niewielkie, kilkudniowe opóźnienia w aktualizacji stanu prawnego w stosunku do oficjalnego rejestru KRS. Twórca aplikacji nie odpowiada za działanie bazy danych ani informacje w niej zawarte.</div><div class=\"card-header bg-color-green text-color-white\"><i class=\"f7-icons\">info</i></div><div class=\"card-content bg-color-green text-color-white\"> Limit zwracanych wyników w jednym zapytaniu wynosi maksymalnie 50 podmiotów. Jeżeli chcesz zawęzić liczbę wyszukanych podmiotów, wprowadź bardziej precyzyjne zapytanie.</div>")
+$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"></div><div class=\"card-content bg-color-green text-color-white\"><i class=\"customicon-alert\"></i> UWAGA - Dane pochodzą z Rejestr.io oferowanego przez fundację MojePaństwo. Mogą nastąpić niewielkie, kilkudniowe opóźnienia w aktualizacji stanu prawnego w stosunku do oficjalnego rejestru KRS. Twórca aplikacji nie odpowiada za działanie bazy danych ani informacje w niej zawarte.</div><div class=\"card-header bg-color-green text-color-white\"><i class=\"f7-icons\">info</i></div><div class=\"card-content bg-color-green text-color-white\"> Limit zwracanych wyników w jednym zapytaniu wynosi maksymalnie 50 podmiotów. Jeżeli chcesz zawęzić liczbę wyszukanych podmiotów, wprowadź bardziej precyzyjne zapytanie.</div>")
 app.preloader.hide();
 if (document.getElementById("test").innerHTML == "") {
-document.getElementById("test").innerHTML = "<div class=\"bg-color-red text-color-white\"><i class=\"f7-icons\">alert</i> Nie znaleziono takiego podmiotu w bazie. Wpisz nazwę jeszcze raz. Upewnij się, że Twoje połączenie z Internetem jest aktywne.</div>"; app.preloader.hide(); }
+document.getElementById("test").innerHTML = "<div class=\"bg-color-red text-color-white\"><i class=\"customicon-alert\"></i> Nie znaleziono takiego podmiotu w bazie. Wpisz nazwę jeszcze raz. Upewnij się, że Twoje połączenie z Internetem jest aktywne.</div>"; app.preloader.hide(); }
 })
-.fail(function() { document.getElementById("test").innerHTML = "<div class=\"bg-color-red text-color-white\"><i class=\"f7-icons\">alert</i>Wystąpił błąd z połączeniem internetowym. Upewnij się, że Twoje połączenie z internetem jest aktywne.</div>"; app.preloader.hide(); })
+.fail(function() { document.getElementById("test").innerHTML = "<div class=\"bg-color-red text-color-white\"><i class=\"customicon-alert\"></i>Wystąpił błąd z połączeniem internetowym. Upewnij się, że Twoje połączenie z internetem jest aktywne.</div>"; app.preloader.hide(); })
 };
 		</script>
 
