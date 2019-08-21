@@ -17,8 +17,6 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="theme-color" content="#EE82EE">
-
-
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
   <script src="jquery-3.3.1.js"></script>
@@ -74,50 +72,7 @@ text-align: justify;
               <div class="list">
 
 
-          <ul>
-                <li>
-
-                  <a href="/searchbykrs/" class="item-content item-link">
-                    <div class="item-inner">
-            <div class="item-title"><i class="customicon-smartphone"></i> Po KRS</div>
-                    </div>
-                  </a>
-                </li>
-          </ul>
-
-          <ul>
-                <li>
-
-                  <a href="/searchbynip/" class="item-content item-link">
-                    <div class="item-inner">
-            <div class="item-title"><i class="customicon-smartphone"></i> Po NIP</div>
-                    </div>
-                  </a>
-                </li>
-          </ul>
-
-          <ul>
-                <li>
-
-                  <a href="/searchbyregon/" class="item-content item-link">
-                    <div class="item-inner">
-            <div class="item-title"><i class="customicon-smartphone"></i> Po REGON</div>
-                    </div>
-                  </a>
-                </li>
-          </ul>
-
-          <ul>
-                <li>
-
-                  <a href="/searchbyyear/" class="item-content item-link">
-                    <div class="item-inner">
-            <div class="item-title"><i class="customicon-smartphone"></i> Po dacie rejestracji</div>
-                    </div>
-                  </a>
-                </li>
-          </ul>
-
+        
           <ul>
                 <li>
 
@@ -170,15 +125,11 @@ text-align: justify;
 
         <div class="page-content">
 
-
-<h1 style="color:red;">UWAGA! Trwają prace modernizacyjne aplikacji. Aktualnie aplikacja nie działa. Informacja z 21.08.2019 r. - przybliżony termin zakończenia prac modernizacyjnych - ok. kilku dni.
-Przepraszam za utrudnienia.</h1>
-
           <div class="list inset">
           <li class="item-content item-input">
             <div class="item-inner">
               <div  class="item-input-wrap">
-                <input id="inputname" type="text" placeholder="Wpisz firmę podmiotu"></input>
+                <input id="inputname" type="text" placeholder="Wpisz numer KRS, firmę (nazwę) podmiotu, NIP lub REGON."></input>
              <span class="input-clear-button"></span>
               </div>
             </div>
@@ -192,35 +143,7 @@ Przepraszam za utrudnienia.</h1>
           });
           </script>
         </div>
-          <div class="list">
-          <a class="item-link smart-select smart-select-init" data-open-in="popover">
-          <select id="wojewodztwo" name="wojewodztwo">
-            <option value="none" selected>wszystkie</option>
-            <option value="dolnoslaskie">dolnośląskie</option>
-                  <option value="kujawsko-pomorskie">kujawsko-pomorskie</option>
-            <option value="lubelskie">lubelskie</option>
-            <option value="lubuskie">lubuskie</option>
-            <option value="lodzkie">łódzkie</option>
-            <option value="mazowieckie">mazowieckie</option>
-          <option value="malopolskie">małopolskie</option>
-            <option value="opolskie">opolskie</option>
-            <option value="slaskie">śląskie</option>
-            <option value="pomorskie">pomorskie</option>
-            <option value="podkarpackie">podkarpackie</option>
-            <option value="zachodniopomorskie">zachodniopomorskie</option>
-            <option value="podlaskie">podlaskie</option>
-                 <option value="swietokrzyskie">świętokrzyskie</option>
-          <option value="warminsko-mazurskie">warmińsko-mazurskie</option>
-          <option value="wielkopolskie">wielkopolskie</option>
-          </select>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title">Województwo</div>
-            </div>
-          </div>
-          </a>
 
-          </div>
 
 
           <input id="buttonkrs" class="button button-raised button-fill popup-open" type="button" value="Wyszukaj" onclick="zwrockrs()"><br>
@@ -231,83 +154,32 @@ Przepraszam za utrudnienia.</h1>
           <div id="wynikiWyszukiwania">
           </ul>
         </div>
+		
+
+<h1 style="color:red;">UWAGA! Trwają prace modernizacyjne aplikacji. Aplikacja tymczasowo posiada jedynie opcję wyszukiwania po numerze KRS albo po nazwie, którą trzeba wpisywać bez polskich znaków. 
+Aktualnie zwraca jedynie jeden wynik.
+</h1>
+
           </div>
 
 
 </div>
 
 
-<!--
+
 		<script type="text/javascript">
 	function zwrockrs() {
   var podmiot = document.getElementById('inputname').value;
-  var select = $('#wojewodztwo').val();
-  var wojewodztwo_id = ""
-  if (select == "podkarpackie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=9";
-  } else if (select == "pomorskie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=11"; }
-  else if (select == "dolnoslaskie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=1"; }
-  else if (select == "kujawsko-pomorskie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=2"; }
-  else if (select == "lubelskie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=3"; }
-  else if (select == "lubuskie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=4"; }
-  else if (select == "lodzkie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=5"; }
-  else if (select == "malopolskie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=6"; }
-  else if (select == "mazowieckie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=7"; }
-  else if (select == "opolskie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=8"; }
-   else if (select == "podlaskie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=10"; }
-     else if (select == "slaskie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=12"; }
-       else if (select == "swietokrzyskie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=13"; }
-         else if (select == "warminsko-mazurskie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=14"; }
-           else if (select == "wielkopolskie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=15"; }
-             else if (select == "zachodniopomorskie") {
-  wojewodztwo_id = "&conditions[krs_podmioty.wojewodztwo_id]=16";
-  } else {
-  wojewodztwo_id = ""; };
-
-  console.log(wojewodztwo_id);
 document.getElementById("wynikiWyszukiwania").innerHTML = "<div class=\"margin-left card-header bg-color-green text-color-white\"><i class=\"f7-icons\">gear_fill</i> Ładowanie wyników wyszukiwania... Proszę czekać.</div>";
 app.preloader.show();
 $.getJSON(
-  "https://api-v3.mojepanstwo.pl/dane/krs_podmioty.json?conditions[q]=" + podmiot + wojewodztwo_id + "&limit=50",
+  "https://aotesty.hmcloud.pl/newapi/example/apicall.php?input=" + podmiot,
   function(data) {
+  console.log(data);
 var i;
 document.getElementById("wynikiWyszukiwania").innerHTML = "";
-if (data.Dataobject.length == 50) {
-$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"><span class=\"margin-left\"> Znaleziono <strong>"+data.Dataobject.length+"</strong> podmiotów. Osiągnięto limit wyszukiwania - postaraj się zawęzić kryteria, aby wyszukać właściwy podmiot.<\div>");
-} else if (data.Dataobject.length == 0) {
-$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-red text-color-white\"><span class=\"margin-left\"> Nie znaleziono żadnych podmiotów. Sprawdź czy wpisałeś prawidłową frazę i spróbuj ponownie.<\div>"); }
-else if (data.Dataobject.length == 1) {
-$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"><span class=\"margin-left\"> Znaleziono jeden podmiot.<\div>");
-}
-else if (data.Dataobject.length == 2) {
-$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"><span class=\"margin-left\"> Znaleziono dwa podmioty.<\div>");
-}
-else if (data.Dataobject.length == 3) {
-$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"><span class=\"margin-left\"> Znaleziono trzy podmioty.<\div>");
-}
-else if (data.Dataobject.length == 4) {
-$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"><span class=\"margin-left\"> Znaleziono cztery podmioty.<\div>");
-}
-else {
-$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"><span class=\"margin-left\"> Znaleziono <strong>"+data.Dataobject.length+"</strong> podmiotów.</div>"); };
-for (i = 0; i < data.Dataobject.length; i++) {
-$("#wynikiWyszukiwania").append("<li class=\" accordion-item\"><a href=\"#\" class=\"bg-color-blue text-color-white item-content item-link\"><div class=\"item-inner\"><div class=\"item-title\">"+data.Dataobject[i].data["krs_podmioty.nazwa"]+"</div></div></a><div class=\"accordion-item-content\"><div class=\"block\"><span><strong><i class=\"f7-icons\">persons_round_fill</i> Firma (nazwa): </strong></span><span id=\"nazwa\">"+data.Dataobject[i].data["krs_podmioty.nazwa"]+"</span><br><span><strong><i class=\"f7-icons\">world</i> KRS:</strong> </span><span id=\"krs\">"+data.Dataobject[i].data["krs_podmioty.krs"]+"</span><br><span><strong><i class=\"f7-icons\">world</i> REGON:</strong></span><span id=\"regon\">"+data.Dataobject[i].data["krs_podmioty.regon"]+"</span><br><span><strong><i class=\"f7-icons\">world</i> NIP:</strong> </span><span id=\"nip\">"+data.Dataobject[i].data["krs_podmioty.nip"]+"</span><br><span><strong><i class=\"f7-icons\">at_round</i> Adres:</strong> </span><span id=\"adres\">"+data.Dataobject[i].data["krs_podmioty.adres"]+"</span><br><span><strong><i class=\"f7-icons\">home</i> Siedziba:</strong> </span><span id=\"siedziba\">"+data.Dataobject[i].data["krs_podmioty.siedziba"]+"</span><br><span><strong><i class=\"f7-icons\">star</i> Data rejestracji podmiotu:</strong> </span><span id=\"adres\">"+data.Dataobject[i].data["krs_podmioty.data_rejestracji_przedsiebiorcy"]+"</span><br><span><strong><i class=\"f7-icons\">briefcase</i> Sposób reprezentacji podmiotu:</strong> </span><span id=\"sposobreprezentacji\">"+data.Dataobject[i].data["krs_podmioty.sposob_reprezentacji"]+"</span><br></div></div></li>");
-};
-$("#wynikiWyszukiwania").append("<div class=\"card-header bg-color-green text-color-white\"></div><div class=\"card-content bg-color-green text-color-white\"><i class=\"customicon-alert\"></i> UWAGA - Dane pochodzą z Rejestr.io oferowanego przez fundację MojePaństwo. Mogą nastąpić niewielkie, kilkudniowe opóźnienia w aktualizacji stanu prawnego w stosunku do oficjalnego rejestru KRS. Twórca aplikacji nie odpowiada za działanie bazy danych ani informacje w niej zawarte.</div><div class=\"card-header bg-color-green text-color-white\"><i class=\"f7-icons\">info</i></div><div class=\"card-content bg-color-green text-color-white\"> Limit zwracanych wyników w jednym zapytaniu wynosi maksymalnie 50 podmiotów. Jeżeli chcesz zawęzić liczbę wyszukanych podmiotów, wprowadź bardziej precyzyjne zapytanie.</div>")
+$("#wynikiWyszukiwania").append("<li class=\" accordion-item\"><a href=\"#\" class=\"bg-color-blue text-color-white item-content item-link\"><div class=\"item-inner\"><div class=\"item-title\">"+data.firma0+"</div></div></a><div class=\"accordion-item-content\"><div class=\"block\"><span><strong><i class=\"f7-icons\">persons_round_fill</i> Firma (nazwa): </strong></span><span id=\"nazwa\">"+data.firma0+"</span><br><span><strong><i class=\"f7-icons\">world</i> KRS:</strong> </span><span id=\"krs\">"+data.krs0+"</span><br><span><strong><i class=\"f7-icons\">world</i> REGON:</strong></span><span id=\"regon\">"+data.regon0+"</span><br><span><strong><i class=\"f7-icons\">world</i> NIP:</strong> </span><span id=\"nip\">"+data.nip0+"</span><br><span><strong><i class=\"f7-icons\">at_round</i> Adres:</strong> </span><span id=\"adres\">"+data.adres0+"</span><br><br><span><strong><i class=\"f7-icons\">star</i> Data rejestracji podmiotu:</strong> </span><span id=\"adres\">"+data.rejestracja0+"</span><br><span><strong><i class=\"f7-icons\">briefcase</i> Sposób reprezentacji podmiotu:</strong> </span><span id=\"sposobreprezentacji\">"+data.sposob_reprezentacji0+"</span><br></div></div></li>");
+
 app.preloader.hide();
 if (document.getElementById("test").innerHTML == "") {
 document.getElementById("test").innerHTML = "<div class=\"bg-color-red text-color-white\"><i class=\"customicon-alert\"></i> Nie znaleziono takiego podmiotu w bazie. Wpisz nazwę jeszcze raz. Upewnij się, że Twoje połączenie z Internetem jest aktywne.</div>"; app.preloader.hide(); }
@@ -316,9 +188,9 @@ document.getElementById("test").innerHTML = "<div class=\"bg-color-red text-colo
 };
 		</script>
 
--->
 
-<!--
+
+
 		<script type="text/javascript">
 	function zwrockrskrs() {
   var podmiot = document.getElementById('inputkrs').value;
@@ -404,7 +276,6 @@ document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-r
 .fail(function() { document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-red text-color-white\"><i class=\"f7-icons\">alert</i>Wystąpił błąd z połączeniem internetowym. Upewnij się, że Twoje połączenie z internetem jest aktywne.</div>"; app.preloader.hide(); })
 };
 		</script>
--->
 
           </div>
 
@@ -474,7 +345,7 @@ document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-r
       // request an interstitial
 
     }
-/*
+
 	document.getElementById("inputname").focus();
 
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -483,7 +354,7 @@ document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-r
         $("#input").click();
     }
 });
-*/
+
 
 
   </script>
