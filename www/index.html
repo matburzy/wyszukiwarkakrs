@@ -51,9 +51,8 @@ text-align: justify;
 
 			<i class="customicon-copyright"></i>
 			Autor: Mateusz Burzyński. Jeżeli zauważysz błąd, skontaktuj się ze mną pod adresem: <a href="mailto:matburzy@gmail.com" class="link external">matburzy@gmail.com.</a><br><br>
-
-			Wersja aplikacji 1.1.2.
-			<br>Aplikacja jest aktualnie w stanie modernizacji. Nie działa żadna z funkcji. Modernizacja potrwa parę dni - licząc od 21.08.2019 r.
+			Wersja aplikacji 1.2.0.
+			<br>Aplikacja zmodernizowana. Przywrócono możliwość wyszukiwania aplikacji po nazwie. Aplikacja ponownie generuje listę wyników.
 			<br><br><i class="customicon-alarm"></i> Twórca aplikacji nie odpowiada za dane znajdujące się w bazie danych. Dane pochodzą z oficjalnej informacji CIKRS, jednakże są aktualizowane z pewnym opóźnieniem. Jeżeli sprawdzasz informacje w celu dokonania zmiany danych podmiotu, upewnij się czy informacje są poprawne korzystając z oficjalnej bazy CIKRS.</div>
           </div>
         </div>
@@ -72,7 +71,7 @@ text-align: justify;
               <div class="list">
 
 
-        
+
           <ul>
                 <li>
 
@@ -90,9 +89,6 @@ text-align: justify;
         </div>
       </div>
     </div>
-
-
-
     <!-- Your main view, should have "view-main" class -->
     <div class="view view-main ios-edges">
       <!-- Page, data-name contains page name which can be used in callbacks -->
@@ -129,7 +125,7 @@ text-align: justify;
           <li class="item-content item-input">
             <div class="item-inner">
               <div  class="item-input-wrap">
-                <input id="inputname" type="text" placeholder="Wpisz numer KRS, firmę (nazwę) podmiotu, NIP lub REGON."></input>
+                <input id="inputname" type="text" placeholder="Wpisz firmę podmiotu."></input>
              <span class="input-clear-button"></span>
               </div>
             </div>
@@ -154,32 +150,22 @@ text-align: justify;
           <div id="wynikiWyszukiwania">
           </ul>
         </div>
-		
-
-<h1 style="color:red;">UWAGA! Trwają prace modernizacyjne aplikacji. Aplikacja tymczasowo posiada jedynie opcję wyszukiwania po numerze KRS albo po nazwie, którą trzeba wpisywać bez polskich znaków. 
-Aktualnie zwraca jedynie jeden wynik.
-</h1>
-
           </div>
-
-
 </div>
-
-
-
 		<script type="text/javascript">
 	function zwrockrs() {
   var podmiot = document.getElementById('inputname').value;
 document.getElementById("wynikiWyszukiwania").innerHTML = "<div class=\"margin-left card-header bg-color-green text-color-white\"><i class=\"f7-icons\">gear_fill</i> Ładowanie wyników wyszukiwania... Proszę czekać.</div>";
 app.preloader.show();
 $.getJSON(
-  "https://aotesty.hmcloud.pl/newapi/example/apicall.php?input=" + podmiot,
+  "https://aotesty.hmcloud.pl/newapi/example/apicall_improved.php?input=" + podmiot,
   function(data) {
   console.log(data);
 var i;
 document.getElementById("wynikiWyszukiwania").innerHTML = "";
-$("#wynikiWyszukiwania").append("<li class=\" accordion-item\"><a href=\"#\" class=\"bg-color-blue text-color-white item-content item-link\"><div class=\"item-inner\"><div class=\"item-title\">"+data.firma0+"</div></div></a><div class=\"accordion-item-content\"><div class=\"block\"><span><strong><i class=\"f7-icons\">persons_round_fill</i> Firma (nazwa): </strong></span><span id=\"nazwa\">"+data.firma0+"</span><br><span><strong><i class=\"f7-icons\">world</i> KRS:</strong> </span><span id=\"krs\">"+data.krs0+"</span><br><span><strong><i class=\"f7-icons\">world</i> REGON:</strong></span><span id=\"regon\">"+data.regon0+"</span><br><span><strong><i class=\"f7-icons\">world</i> NIP:</strong> </span><span id=\"nip\">"+data.nip0+"</span><br><span><strong><i class=\"f7-icons\">at_round</i> Adres:</strong> </span><span id=\"adres\">"+data.adres0+"</span><br><br><span><strong><i class=\"f7-icons\">star</i> Data rejestracji podmiotu:</strong> </span><span id=\"adres\">"+data.rejestracja0+"</span><br><span><strong><i class=\"f7-icons\">briefcase</i> Sposób reprezentacji podmiotu:</strong> </span><span id=\"sposobreprezentacji\">"+data.sposob_reprezentacji0+"</span><br></div></div></li>");
-
+for(var i = 0; i < data.length; i++) {
+$("#wynikiWyszukiwania").append("<li class=\" accordion-item\"><a href=\"#\" class=\"bg-color-blue text-color-white item-content item-link\"><div class=\"item-inner\"><div class=\"item-title\">"+data[i].firma+"</div></div></a><div class=\"accordion-item-content\"><div class=\"block\"><span><strong><i class=\"f7-icons\">persons_round_fill</i> Firma (nazwa): </strong></span><span id=\"nazwa\">"+data[i].firma+"</span><br><span><strong><i class=\"f7-icons\">world</i> KRS:</strong> </span><span id=\"krs\">"+data[i].krs+"</span><br><span><strong><i class=\"f7-icons\">world</i> REGON:</strong></span><span id=\"regon\">"+data[i].regon+"</span><br><span><strong><i class=\"f7-icons\">world</i> NIP:</strong> </span><span id=\"nip\">"+data[i].nip+"</span><br><span><strong><i class=\"f7-icons\">at_round</i> Adres:</strong> </span><span id=\"adres\">"+data[i].adres+"</span><br><br><span><strong><i class=\"f7-icons\">star</i> Data rejestracji podmiotu:</strong> </span><span id=\"adres\">"+data[i].rejestracja+"</span><br><span><strong><i class=\"f7-icons\">briefcase</i> Sposób reprezentacji podmiotu:</strong> </span><span id=\"sposobreprezentacji\">"+data[i].sposob_reprezentacji+"</span><br></div></div></li>");
+}
 app.preloader.hide();
 if (document.getElementById("test").innerHTML == "") {
 document.getElementById("test").innerHTML = "<div class=\"bg-color-red text-color-white\"><i class=\"customicon-alert\"></i> Nie znaleziono takiego podmiotu w bazie. Wpisz nazwę jeszcze raz. Upewnij się, że Twoje połączenie z Internetem jest aktywne.</div>"; app.preloader.hide(); }
@@ -187,10 +173,6 @@ document.getElementById("test").innerHTML = "<div class=\"bg-color-red text-colo
 .fail(function() { document.getElementById("test").innerHTML = "<div class=\"bg-color-red text-color-white\"><i class=\"customicon-alert\"></i>Wystąpił błąd z połączeniem internetowym. Upewnij się, że Twoje połączenie z internetem jest aktywne.</div>"; app.preloader.hide(); })
 };
 		</script>
-
-
-
-
 		<script type="text/javascript">
 	function zwrockrskrs() {
   var podmiot = document.getElementById('inputkrs').value;
@@ -284,7 +266,7 @@ document.getElementById("test").innerHTML = "<div class=\"card-header bg-color-r
       </div>
 
     </div>
-			
+
 
   <script>
 	     function initAds() {
